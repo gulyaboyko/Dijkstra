@@ -7,28 +7,23 @@
 //
 
 import XCTest
-@testable import GraphShortestWay
+//@testable import GraphShortestWay
 
-class GraphShortestWayTests: XCTestCase {
-
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+final class GraphShortestWayTests: XCTestCase {
+    let VE: [[(Int, Int)?]] = [ // Номер вершины + вес ребра
+        [(1, 2), (2, 3), (3, 6), nil, nil], // A
+        [(0, 2), (2, 4), (4, 9), nil, nil], // B
+        [(0, 3), (1, 4), (3, 1), (4, 7), (5, 6)], // C
+        [(0, 6), (2, 1), (5, 4), nil, nil], // D
+        [(1, 9), (2, 7), (5, 1), (6, 5), nil], // E
+        [(4, 1), (2, 6), (3, 4), (6, 8), nil], // F
+        [(4, 5), (5, 8), nil, nil, nil]  // G
+    ]
+    
+    func test_DijkstraAlgo() {
+        let sut = DijkstraAlgo()
+        let edges = try? sut.run(VE: VE, from: 0, to: 6)
+        print(edges)
     }
 
 }
